@@ -6,41 +6,11 @@ using System.Text.RegularExpressions;
 using System.Linq;
 using Grasshopper.GUI.Canvas;
 using Grasshopper.Kernel.Attributes;
+using Runway.component;
 
 namespace Runway
 {
-    public class FilterDataComponent_custom : GH_ComponentAttributes
-    {
-        public FilterDataComponent_custom(IGH_Component component) : base(component) { }
-
-        protected override void Render(GH_Canvas canvas, Graphics graphics, GH_CanvasChannel channel)
-        {
-            GH_PaletteStyle styleStandard = null;
-            GH_PaletteStyle styleSelected = null;
-
-            
-            
-
-            if (channel == GH_CanvasChannel.Objects)
-            {
-                styleStandard = GH_Skin.palette_normal_standard;
-                styleSelected = GH_Skin.palette_normal_selected;
-                GH_Skin.palette_normal_standard = new GH_PaletteStyle(Color.Black, Color.LightSalmon, Color.DarkSlateGray);
-                GH_Skin.palette_normal_selected = new GH_PaletteStyle(Color.SkyBlue, Color.DarkBlue, Color.Black);
-                // Restore the cached styles.
-                base.Render(canvas, graphics, channel);
-                GH_Skin.palette_normal_standard = styleStandard;
-                GH_Skin.palette_normal_selected = styleSelected;
-
-            }
-            else
-            {
-                base.Render(canvas, graphics, channel);
-            }
-
-
-        }
-    }
+    
 
     public class FilterDataComponent : GH_Component
     {
@@ -50,17 +20,14 @@ namespace Runway
               "FD",
               "filter Data by input value",
               "Runway",
-              "Filters")
+              "Text")
         {
         }
 
-        public override void CreateAttributes()
-        {
-            base.m_attributes = new FilterDataComponent_custom(this);
-        }
+        
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddTextParameter("Input Data", "I", "Input data from Receive ", GH_ParamAccess.item);
+            pManager.AddTextParameter("<< Data", "<<D", "Input data from Receive ", GH_ParamAccess.item);
 
         }
         public override GH_Exposure Exposure
@@ -118,10 +85,11 @@ namespace Runway
         {
             get
             {
-                return Properties.Resources.Group_28; 
+                return Properties.Resources.filter;
             }
         }
-
+        public override void CreateAttributes() =>
+            m_attributes = new Runway_Interface(this);
         public override Guid ComponentGuid
         {
             get { return new Guid("8be70209-fca8-41ca-9952-ac018d7a7082"); }

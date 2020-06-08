@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.Serialization.Formatters;
 using Grasshopper.Kernel;
+using Runway.component;
 
 
 namespace Runway
@@ -12,15 +13,17 @@ namespace Runway
       
         public DecomposeImage()
           : base("Decompose Image", "di",
-              "Convert data  output to image ",
+              "Convert data to image ",
               "Runway",
               "Image")
         {
         }
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
-            pManager.AddTextParameter("Input Runway Data", "IRD", "input runway Data from Runway component ", GH_ParamAccess.item);
+            pManager.AddTextParameter("<< Data", "<<D", "input runway Data from Runway component ", GH_ParamAccess.item);
             pManager.AddBooleanParameter( "Run ","R" ," Run convert base 64 to image  ", GH_ParamAccess.item,false);
+            pManager.AddIntegerParameter("Width(optional)", "W", "resize image width", GH_ParamAccess.item,100);
+            pManager.AddIntegerParameter("Height(optional)", "H", "resize image height ", GH_ParamAccess.item,100);
 
         }
 
@@ -32,8 +35,7 @@ namespace Runway
             pManager.AddTextParameter("Green", "G", "Green channel", GH_ParamAccess.item);
             pManager.AddTextParameter("Blue", "B", "Blue channel", GH_ParamAccess.item);
             pManager.AddTextParameter("Alpha", "A", "Alpha channel", GH_ParamAccess.item);
-            pManager.AddTextParameter("Width", "W", "Width channel", GH_ParamAccess.item);
-            pManager.AddTextParameter("Height", "H", "Height channel", GH_ParamAccess.item);
+            
 
         }
 
@@ -45,6 +47,8 @@ namespace Runway
             Boolean Reset = false;
             int pixwidth = 0;
             int pixheight = 0;
+            int resizewidth = 0;
+            int resizeheight = 0;
             List<string> color = new List<string>();
             List<double> blakWhite = new List<double>();
             List<int> red = new List<int>();
@@ -53,7 +57,8 @@ namespace Runway
             List<int> alpha = new List<int>();
             DA.GetData(0, ref setdata);
             DA.GetData(1, ref Reset);
-
+            DA.GetData(2, ref resizewidth);
+            DA.GetData(3, ref resizeheight);
             // convert data
 
             if (Reset)
@@ -71,18 +76,17 @@ namespace Runway
                 Bitmap bitImage = new Bitmap((Bitmap) Image.FromStream(streamBitmap));
 
                 // width and height image ref to out put
-                 pixwidth = bitImage.Width;
-                 pixheight = bitImage.Height;
 
-
+                Bitmap resizeimage = ResizeBitmap(bitImage, resizewidth, resizeheight);
                 // decompose image to rgb 
 
 
-                using (Bitmap bmp = new Bitmap(bitImage))
+                using (Bitmap bmp = new Bitmap(resizeimage))
                 {
-                    for (int i = 0; i < bitImage.Width; i++)
+                    
+                    for (int j =0; j<resizewidth ;j++)
                     {
-                        for (int j = 0; j < bitImage.Height; j++)
+                        for (int i= 0;i<resizewidth; i++)
                         {
                             Color clr = bmp.GetPixel(i, j);
                            
@@ -113,18 +117,29 @@ namespace Runway
             DA.SetDataList(3, green);
             DA.SetDataList(4, blue);
             DA.SetDataList(5, alpha);
-            DA.SetData(6, pixwidth);
-            DA.SetData(7, pixheight);
+          
 
+        }
+        public Bitmap ResizeBitmap(Bitmap bmp, int width, int height)
+        {
+            Bitmap result = new Bitmap(width, height);
+            using (Graphics g = Graphics.FromImage(result))
+            {
+                g.DrawImage(bmp, 0, 0, width, height);
+            }
+
+            return result;
         }
         protected override System.Drawing.Bitmap Icon
         {
             get
             {
                 
-                return Properties.Resources.Group_26;
+                return Properties.Resources.decompose;
             }
         }
+        public override void CreateAttributes() =>
+            m_attributes = new Runway_Interface(this);
         public override Guid ComponentGuid
         {
             get { return new Guid("3750da58-fee7-4a96-8791-04929e85648e"); }

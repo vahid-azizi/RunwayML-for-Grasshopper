@@ -27,7 +27,9 @@ namespace Runway
             get
             {
                 //Return a short string describing the purpose of this GHA library.
-                return "";
+                return "RunwayML Machine learning for creators Bring the power of artificial " +
+                       "intelligence to your creative projects with an intuitive and simple visual interface." +
+                       " Start exploring new ways of creating today.";
             }
         }
         public override Guid Id
@@ -51,7 +53,7 @@ namespace Runway
             get
             {
                 //Return a string representing your preferred contact details.
-                return "vahid.azizi.1992@gmail.com";
+                return "vahid.azizi.1992@gmail.com & Runwayml.com & for this plugin:parsiocad.com";
             }
         }
     }

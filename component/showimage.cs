@@ -2,6 +2,8 @@
 using System.Drawing;
 using Grasshopper.GUI.Canvas;
 using Grasshopper.Kernel;
+using Runway.component;
+
 namespace image_sampeler
 {
     public class CustomParameterAttributes : Grasshopper.Kernel.Attributes.GH_ComponentAttributes
@@ -36,22 +38,27 @@ namespace image_sampeler
         protected override void Render(GH_Canvas canvas, Graphics graphics, GH_CanvasChannel channel)
         {
             if (channel != GH_CanvasChannel.Objects)
-            {
                 base.Render(canvas, graphics, channel);
-            }
             else
             {
+                GH_Skin.palette_hidden_standard = Runway_Interface.Hds.Normal;
+                GH_Skin.palette_hidden_selected = Runway_Interface.Hds.Selected;
+                GH_Skin.palette_warning_standard = Runway_Interface.Hds.Warning;
+                GH_Skin.palette_warning_selected = Runway_Interface.Hds.Selected;
+                GH_Skin.palette_error_standard = Runway_Interface.Hds.Error;
+                GH_Skin.palette_error_selected = Runway_Interface.Hds.Selected;
                 RenderComponentCapsule(canvas, graphics, true, false, false, true, false, false);
-                var rectangle1 = GH_Convert.ToRectangle(m_innerBounds);
-                if (GH_Canvas.ZoomFadeLow > 0)
-                {
-                    graphics.DrawImage(CanvasImage, imagefarame);
-                }
-                if (GH_Canvas.ZoomFadeLow < .67)
-                {
-                    graphics.DrawImage(Runway.Properties.Resources.RunwayImage, imagefarame);
-                }
+                      GH_Skin.palette_hidden_standard = Runway_Interface.Hds.StyleStandard;
+            GH_Skin.palette_hidden_selected = Runway_Interface.Hds.StyleStyleSelected;
+            GH_Skin.palette_warning_standard = Runway_Interface.Hds.StyleWStandard;
+            GH_Skin.palette_warning_selected = Runway_Interface.Hds.StyleWSelected;
+            GH_Skin.palette_error_standard = Runway_Interface.Hds.StyleEStandard;
+            GH_Skin.palette_error_selected = Runway_Interface.Hds.StyleESelected;
 
+                
+              
+                if (GH_Canvas.ZoomFadeLow > 0) graphics.DrawImage(CanvasImage, imagefarame);
+                if (GH_Canvas.ZoomFadeLow < .67) graphics.DrawImage(Runway.Properties.Resources.RunwayImage, imagefarame);  
             }
 
         }
@@ -71,10 +78,7 @@ namespace image_sampeler
         {
             m_attributes = new CustomParameterAttributes(this);
         }
-        public override GH_Exposure Exposure
-        {
-            get { return GH_Exposure.tertiary; }
-        }
+        public override GH_Exposure Exposure => GH_Exposure.tertiary;
 
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
@@ -101,14 +105,10 @@ namespace image_sampeler
 
 
         }
-        protected override System.Drawing.Bitmap Icon
-        {
-            get { return Runway.Properties.Resources.Group_24; }
-        }
-        public override Guid ComponentGuid
-        {
-            get { return new Guid("d9b5fb91-b9c8-415f-a426-81a397d61cbb"); }
-        }
+        protected override System.Drawing.Bitmap Icon => Runway.Properties.Resources.Group_24;
+
+
+        public override Guid ComponentGuid => new Guid("d9b5fb91-b9c8-415f-a426-81a397d61cbb");
     }
 
 }

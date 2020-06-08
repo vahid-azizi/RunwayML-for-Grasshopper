@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using Grasshopper.GUI.Canvas;
 using Grasshopper.Kernel;
+using Runway.component;
 
 
 namespace Runway
@@ -40,7 +41,21 @@ namespace Runway
             if (channel != GH_CanvasChannel.Objects) base.Render(canvas, graphics, channel);
             else
             {
+                 GH_Skin.palette_hidden_standard = Runway_Interface.Hds.Normal;
+            GH_Skin.palette_hidden_selected = Runway_Interface.Hds.Selected;
+            GH_Skin.palette_warning_standard = Runway_Interface.Hds.Warning;
+            GH_Skin.palette_warning_selected = Runway_Interface.Hds.Selected;
+            GH_Skin.palette_error_standard = Runway_Interface.Hds.Error;
+            GH_Skin.palette_error_selected = Runway_Interface.Hds.Selected; 
                 RenderComponentCapsule(canvas, graphics, true, false, false, true, true, false);
+                  GH_Skin.palette_hidden_standard = Runway_Interface.Hds.StyleStandard;
+            GH_Skin.palette_hidden_selected = Runway_Interface.Hds.StyleStyleSelected;
+            GH_Skin.palette_warning_standard = Runway_Interface.Hds.StyleWStandard;
+            GH_Skin.palette_warning_selected = Runway_Interface.Hds.StyleWSelected;
+            GH_Skin.palette_error_standard = Runway_Interface.Hds.StyleEStandard;
+            GH_Skin.palette_error_selected = Runway_Interface.Hds.StyleESelected;
+                
+                
                 var rectangle1 = GH_Convert.ToRectangle(m_innerBounds);
                 if (GH_Canvas.ZoomFadeLow > 0) graphics.DrawImage(CanvasImage, rectangle1);
                 if (GH_Canvas.ZoomFadeLow < .67) graphics.DrawImage(Properties.Resources.RunwayImage, rectangle1);
@@ -68,9 +83,9 @@ namespace Runway
             pManager.AddIntegerParameter("Alpha", "A", "Alpha channel", GH_ParamAccess.list);
             pManager.AddIntegerParameter("Width", "W", "Width channel", GH_ParamAccess.item);
             pManager.AddIntegerParameter("Height", "H", "Height channel", GH_ParamAccess.item);
-            pManager.AddBooleanParameter("save", "s", "Save image", GH_ParamAccess.item,false);
-            pManager.AddTextParameter("Address", "Ad", "save picture", GH_ParamAccess.item,"");
-            pManager.AddTextParameter("file name", "n", "fine name", GH_ParamAccess.item,"default");
+            pManager.AddBooleanParameter("save", "s", "(optional)if you want to save make this true", GH_ParamAccess.item,false);
+            pManager.AddTextParameter("Address", "Ad", "(optional)local address", GH_ParamAccess.item,"");
+            pManager.AddTextParameter("file name", "n", "(optional)fine name", GH_ParamAccess.item,"default");
         }
 
        
@@ -134,16 +149,9 @@ namespace Runway
 
         }
 
-        protected override System.Drawing.Bitmap Icon
-        {
-            get
-            {
-                return Properties.Resources.Group_29;
-            }
-        }
-        public override Guid ComponentGuid
-        {
-            get { return new Guid("3bbf701d-9f4c-4381-a0ef-5b9c4c35bc05"); }
-        }
+        protected override System.Drawing.Bitmap Icon => Properties.Resources.recompose;
+
+
+        public override Guid ComponentGuid => new Guid("3bbf701d-9f4c-4381-a0ef-5b9c4c35bc05");
     }
 }

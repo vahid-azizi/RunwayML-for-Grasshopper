@@ -82,9 +82,11 @@ namespace Runway.component
         {
             get
             {
-                return Properties.Resources.takimage_icon;
+                return Properties.Resources.cam;
             }
         }
+        public override void CreateAttributes() =>
+            m_attributes = new Runway_Interface(this);
         public override Guid ComponentGuid
         {
             get { return new Guid("d838c9b4-4b75-4e8f-84eb-3b7e30e01093"); }

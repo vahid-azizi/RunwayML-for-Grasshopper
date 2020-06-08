@@ -8,8 +8,8 @@ namespace Runway.component
     public class ConvertImage : GH_Component
     {
         public ConvertImage()
-          : base("ConvertImage", "cv",
-              "Description",
+          : base("Convert Image", "cv",
+              "convert image to base 64 ",
               "Runway", "Image")
         {
         }
@@ -25,7 +25,7 @@ namespace Runway.component
 
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddTextParameter("base64", "b", "local address", GH_ParamAccess.item);
+            pManager.AddTextParameter("base64", "b", "connect to string data ", GH_ParamAccess.item);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)
@@ -51,10 +51,11 @@ namespace Runway.component
         {
             get
             {
-                return Properties.Resources.icon;
+                return Properties.Resources._64;
             }
         }
-        
+        public override void CreateAttributes() =>
+            m_attributes = new Runway_Interface(this);
         public override Guid ComponentGuid
         {
             get { return new Guid("ac52991a-f847-4067-80e5-c6f55b31c967"); }
