@@ -38,23 +38,11 @@ namespace Runway.component
             DA.GetData(0, ref name);
             DA.GetDataList(1,  data);
             ////convert array to json
-            for (int i = 0; i < data.Count; i++)
-            {
-                if (i == 0)
-                {
-                    jason += "[";
-                    jason += data[i];
-                }
-                else if (i < data.Count - 1)
-                {
-                    jason += ",";
-                    jason += data[i];
-                }
-                else jason += "]";
-            }
+             jason = $"[{string.Join(",", data)}]";
             string Name = "\"" + name + "\":";
-            string Data = jason;
-            string json = Name + Data;
+            string json= Name + jason;
+            
+            
             DA.SetData(0, json);
 
         }
@@ -68,6 +56,8 @@ namespace Runway.component
                 return Properties.Resources.ber;
             }
         }
+        public override void CreateAttributes() =>
+            m_attributes = new Runway_Interface(this);
 
         public override Guid ComponentGuid
         {

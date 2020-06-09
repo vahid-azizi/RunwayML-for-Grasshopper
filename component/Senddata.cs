@@ -59,7 +59,6 @@ namespace Runway
                 {
                     string json = test;
                     streamWriter.Write(json);
-                    DA.SetData(0, json);
 
                 }
 
@@ -67,6 +66,7 @@ namespace Runway
                 using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
                 {
                     var result = streamReader.ReadToEnd();
+                    DA.SetData(0, result);
 
                 }
             }

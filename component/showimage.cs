@@ -58,7 +58,7 @@ namespace image_sampeler
                 
               
                 if (GH_Canvas.ZoomFadeLow > 0) graphics.DrawImage(CanvasImage, imagefarame);
-                if (GH_Canvas.ZoomFadeLow < .67) graphics.DrawImage(Runway.Properties.Resources.RunwayImage, imagefarame);  
+                if (GH_Canvas.ZoomFadeLow < 0.90) graphics.DrawImage(Runway.Properties.Resources.RunwayImage, imagefarame);  
             }
 
         }
