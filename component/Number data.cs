@@ -49,7 +49,7 @@ namespace Runway.component
             get
             {
              
-                return Properties.Resources.num;
+                return Properties.Resources.num2;
             }
         }
 

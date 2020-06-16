@@ -183,6 +183,16 @@ namespace Runway.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap j24 {
+            get {
+                object obj = ResourceManager.GetObject("j24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap jp {
             get {
                 object obj = ResourceManager.GetObject("jp", resourceCulture);
@@ -213,6 +223,16 @@ namespace Runway.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap num2 {
+            get {
+                object obj = ResourceManager.GetObject("num2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap recompose {
             get {
                 object obj = ResourceManager.GetObject("recompose", resourceCulture);
@@ -236,16 +256,6 @@ namespace Runway.Properties {
         public static System.Drawing.Bitmap RunwayImage {
             get {
                 object obj = ResourceManager.GetObject("RunwayImage", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap takimage_icon {
-            get {
-                object obj = ResourceManager.GetObject("takimage_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -48,15 +48,17 @@ namespace Runway.component
         
         
         public static readonly Color A = Color.FromArgb(5,122,255);
-        public static readonly Color B = Color.Black;
-        public static readonly Color C = Color.FromArgb(115,229,162);
-        public static readonly Color D = Color.FromArgb(unchecked((int) 0xffff7c00));   
+        public static readonly Color B = Color.FromArgb(240,52, 43, 56);
+            public static readonly Color C = Color.FromArgb(128,189,171);
+        public static readonly Color D = Color.FromArgb(unchecked((int) 0xffff7c00));
+        public static readonly Color F = Color.FromArgb(150,30, 26, 34);
+        public static readonly Color E = Color.FromArgb( 100,255, 148, 148);
 
 
-        public static readonly GH_PaletteStyle Normal = new GH_PaletteStyle(B, C, C);
-        public static readonly GH_PaletteStyle Selected = new GH_PaletteStyle(A, C, C);
+            public static readonly GH_PaletteStyle Normal = new GH_PaletteStyle(B, C, C);
+        public static readonly GH_PaletteStyle Selected = new GH_PaletteStyle(F, C, C);
         public static readonly GH_PaletteStyle Warning = new GH_PaletteStyle(B, C, C);
-        public static readonly GH_PaletteStyle Error = new GH_PaletteStyle(D, C, Color.NavajoWhite);
+        public static readonly GH_PaletteStyle Error = new GH_PaletteStyle(E, C, B);
 
 
 

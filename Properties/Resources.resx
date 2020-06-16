@@ -145,9 +145,6 @@
   <data name="icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="takimage_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\takimage icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ber" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ber.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -177,5 +174,11 @@
   </data>
   <data name="_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="j24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\j24.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="num2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\num2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

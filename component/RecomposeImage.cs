@@ -91,7 +91,7 @@ namespace Runway
        
         protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
         {
-            pManager.AddTextParameter("base64", "b64", "Input runway Data from Runway component ", GH_ParamAccess.item);
+            pManager.AddTextParameter("Address", "AD", "create image from pixel ", GH_ParamAccess.item);
         }
 
         protected override void SolveInstance(IGH_DataAccess DA)
@@ -140,12 +140,15 @@ namespace Runway
             ImageConverter converter = new ImageConverter();
             byte[] outputt = (byte[])converter.ConvertTo(output, typeof(byte[]));
             string imagebase64 = Convert.ToBase64String(outputt);
-            DA.SetData(0, imagebase64);
+            string finalAddress = addressPhoto + @"\" + namePhoto + ".jpeg";
+            DA.SetData(0, finalAddress);
             if (blooansave)
             {
-                string finalAddress = addressPhoto + @"\" + namePhoto+".jpeg"; 
+                
                 output.Save(finalAddress);
+
             }
+
 
         }
 
